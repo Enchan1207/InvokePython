@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Python3 embedライブラリを検索する.
-# set(Python3_USE_STATIC_LIBS TRUE) # staticライブラリかsharedライブラリかを強制させられる
+set(Python3_USE_STATIC_LIBS TRUE) # staticライブラリかsharedライブラリかを強制させられる
 find_package (Python3 COMPONENTS Interpreter Development.Embed)
 if (Python3_Development.Embed_FOUND)
     message(NOTICE "Python3 development artifacts for Python embedding found.")

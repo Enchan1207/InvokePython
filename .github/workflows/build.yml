@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
@@ -39,6 +39,15 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build
         run: ctest
+
+      - name: Execute
+        run: |
+          ./build/cli/invokepython_cli; result=$?
+          if [ $result -eq 0 ]; then
+            echo "Succeeded."
+          else
+            echo "Failed."
+          fi
 
       - name: Compress build result
         run: tar czf build.tar.gz build/
