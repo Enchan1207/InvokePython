@@ -10,6 +10,7 @@ target_sources(invokepython_cli PRIVATE
 )
 target_include_directories(invokepython_cli PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+    ${PYTHON_BASE_DIR}/include/python3.9
 )
 target_link_libraries(invokepython_cli PRIVATE
     invokepython

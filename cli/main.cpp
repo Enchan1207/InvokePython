@@ -2,10 +2,11 @@
 // InvokePython CLI
 //
 
-#include <iostream>
 #include <invokepython.hpp>
+#include <iostream>
 
 int main(int argc, char const *argv[]) {
-    std::cout << "Hello, World!" <<  std::endl;
+    exec_python_function();
+
     return 0;
 }

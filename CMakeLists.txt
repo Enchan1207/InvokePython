@@ -13,6 +13,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# libPythonをリンクするために、Pythonのベースディレクトリとインクルードパスを設定
+# これはmacOSでPython3.9.13を使う時の設定であり、ビルド環境により変更する必要があります.
+set(PYTHON_BASE_DIR /usr/local/Cellar/python@3.9/3.9.13/Frameworks/Python.framework/Versions/3.9)
+
 # ライブラリソースディレクトリ
 add_subdirectory(src)
 

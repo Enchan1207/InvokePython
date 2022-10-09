@@ -22,10 +22,12 @@ target_sources(invokepython_test PRIVATE
 )
 target_link_libraries(invokepython_test PRIVATE
     invokepython
+    ${PYTHON_BASE_DIR}/Python
     GTest::gtest_main
 )
 target_include_directories(invokepython_test
     PRIVATE
+    ${PYTHON_BASE_DIR}/include/python3.9
     ${PROJECT_SOURCE_DIR}/include
     ${GTEST_INCLUDE_DIRS}
 )
