@@ -54,7 +54,7 @@ jobs:
 
       - name: Run build result as container
         run: |
-          docker run -it --rm invoke_example; result=$?
+          docker run invoke_example; result=$?
           if [ $result -eq 0 ]; then
             echo "Succeeded."
           else
