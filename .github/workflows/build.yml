@@ -41,22 +41,10 @@ jobs:
         run: ctest
 
       - name: Execute
-        run: |
-          ./build/cli/invokepython_cli; result=$?
-          if [ $result -eq 0 ]; then
-            echo "Succeeded."
-          else
-            echo "Failed."
-          fi
+        run: ./build/cli/invokepython_cli
 
       - name: Build docker image
         run: docker build -t invoke_example ./
 
       - name: Run build result as container
-        run: |
-          docker run invoke_example; result=$?
-          if [ $result -eq 0 ]; then
-            echo "Succeeded."
-          else
-            echo "Failed."
-          fi
+        run: docker run invoke_example

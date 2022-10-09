@@ -12,7 +12,7 @@ void exec_python_function() {
     Py_Initialize();
 
     // 単純なコードを実行
-    PyRun_SimpleString("import sys; print(sys.version)");
+    PyRun_SimpleString("print(\"Hello, World from Python3 in C++!!\")");
 
     if (Py_FinalizeEx() < 0) {
         exit(120);
