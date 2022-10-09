@@ -49,30 +49,14 @@ jobs:
             echo "Failed."
           fi
 
-      - name: Compress build result
-        run: tar czf build.tar.gz build/
-
-      - name: Upload build result as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build_result
-          path: build.tar.gz
-
-  run_on_plain_env:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download build result from artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build_result
-
-      - name: Decompress build result as artifact
-        run: tar xzf build.tar.gz
-
       - name: Build docker image
         run: docker build -t invoke_example ./
 
       - name: Run build result as container
-        run: docker run -it --rm invoke_example
+        run: |
+          docker run -it --rm invoke_example; result=$?
+          if [ $result -eq 0 ]; then
+            echo "Succeeded."
+          else
+            echo "Failed."
+          fi
