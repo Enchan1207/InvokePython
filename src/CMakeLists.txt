@@ -10,10 +10,9 @@ target_sources(invokepython PRIVATE
 )
 target_include_directories(invokepython PRIVATE
     ${PROJECT_SOURCE_DIR}/include
-    ${PYTHON_BASE_DIR}/include/python3.9
 )
 target_link_libraries(invokepython PUBLIC
-    ${PYTHON_BASE_DIR}/Python
+    Python3::Python
 )
 target_compile_options(invokepython PRIVATE
     -Wall
