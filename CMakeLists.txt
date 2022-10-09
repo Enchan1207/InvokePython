@@ -13,9 +13,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# libPythonをリンクするために、Pythonのベースディレクトリとインクルードパスを設定
-# これはmacOSでPython3.9.13を使う時の設定であり、ビルド環境により変更する必要があります.
-set(PYTHON_BASE_DIR /usr/local/Cellar/python@3.9/3.9.13/Frameworks/Python.framework/Versions/3.9)
+# Python3 embedライブラリを検索する.
+# set(Python3_USE_STATIC_LIBS TRUE) # staticライブラリかsharedライブラリかを強制させられる
+find_package (Python3 COMPONENTS Interpreter Development.Embed)
+if (Python3_Development.Embed_FOUND)
+    message(NOTICE "Python3 development artifacts for Python embedding found.")
+else()
+    message(FATAL_ERROR "Python3 development artifacts for Python embedding not found.")
+endif()
+message(NOTICE ${Python3_LIBRARIES})
+
+# 面倒なのでグローバルでインクルードしてしまう
+include_directories(BEFORE
+    ${Python3_INCLUDE_DIRS}
+)
 
 # ライブラリソースディレクトリ
 add_subdirectory(src)
