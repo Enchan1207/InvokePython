@@ -1,0 +1,41 @@
+#
+# build
+#
+name: build
+
+# 実行条件
+on:
+  push:
+    branches:
+      - develop
+      - master
+      - issue/2-build-test
+    paths:
+      - "src/**"
+      - "cli/**"
+      - "tests/**"
+      - "include/**"
+
+jobs:
+  document:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Configure CMake
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+      - name: Build
+        working-directory: ${{github.workspace}}/build
+        run: cmake --build .
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest
